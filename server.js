@@ -16,7 +16,7 @@ import uploadRouter from './routes/uploadRoutes.js';
 import invoiceRouter from './routes/invoiceRoutes.js';
 import receiptRouter from './routes/receiptRoutes.js';
 
-// dotenv.config();
+dotenv.config();
 // console.log(process.env);
 console.log("process.env.MONGODB_URI");
 console.log(process.env.MONGODB_URI);
@@ -56,11 +56,20 @@ app.use('/api/receipts', receiptRouter);
 app.use('/api/valuees', valueeRouter);
 app.use('/api/configurations', configurationRouter);
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '/frontend/build')));
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
-);
+
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, '/frontend/build')));
+// app.get('*', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+// );
+
+
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+})
+
+
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
