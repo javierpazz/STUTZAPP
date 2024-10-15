@@ -17,14 +17,8 @@ import invoiceRouter from './routes/invoiceRoutes.js';
 import receiptRouter from './routes/receiptRoutes.js';
 
 dotenv.config();
-// console.log(process.env);
-console.log("process.env.MONGODB_URI");
-console.log(process.env.MONGODB_URI);
-console.log("process.env.MONGODB_URI");
 mongoose
   .connect(process.env.MONGODB_URI)
-  // .connect("mongodb+srv://admin:admin123456@stutzapp.nf44trs.mongodb.net/sdb")
-  // .connect(`${process.env.MONGODB_URI}`)
   .then(() => {
     console.log('connected to db');
   })
